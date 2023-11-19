@@ -4,6 +4,8 @@ FROM $BASE
 ARG arch=arm
 ENV ARCH=$arch
 
+RUN apt-get update && apt-get upgrade
+
 COPY qemu/qemu-$ARCH-static* /usr/bin/
 
 ADD mdns-repeater.c mdns-repeater.c
