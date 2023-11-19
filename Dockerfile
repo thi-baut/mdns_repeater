@@ -4,7 +4,7 @@ FROM $BASE
 ARG arch=arm
 ENV ARCH=$arch
 
-RUN apt-get update && apt-get upgrade
+RUN apk update && apk upgrade
 
 COPY qemu/qemu-$ARCH-static* /usr/bin/
 
