@@ -6,7 +6,7 @@ ENV ARCH=$arch
 
 RUN apk update && apk upgrade
 
-COPY qemu/qemu-$ARCH-static* /usr/bin/
+# COPY qemu/qemu-$ARCH-static* /usr/bin/
 
 ADD mdns-repeater.c mdns-repeater.c
 RUN apk add --no-cache build-base \
