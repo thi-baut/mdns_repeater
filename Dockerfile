@@ -1,6 +1,9 @@
 ARG BASE=alpine
 FROM $BASE
 
+# Create a non-root user named 'mdns'
+RUN addgroup -S mdns && adduser -S mdns -G mdns
+
 ARG arch=arm
 ENV ARCH=$arch
 
@@ -16,6 +19,9 @@ RUN apk add --no-cache build-base \
 
 COPY run.sh /run.sh
 ENV options="" hostNIC=eth0 dockerNIC=docker_gwbridge
+
+# Switch to the non-root user
+# USER mdns
 CMD mdns-repeater -f ${options} ${hostNIC} ${dockerNIC}
 
 ENTRYPOINT [ "/run.sh" ]
